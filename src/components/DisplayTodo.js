@@ -32,9 +32,9 @@ const DisplayTodo = (props) => {
             return(
               <TodoItem key={todo.id}
               item={todo}
-              removeTodos={props.removeTodos}
-              completeTodos={props.completeTodos}
-              updateTodos={props.updateTodos}
+              removeTodo={props.removeTodo}
+              completeTodo={props.completeTodo}
+              updateTodo={props.updateTodo}
               />
             )
           }) : null }

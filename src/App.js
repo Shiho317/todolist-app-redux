@@ -5,7 +5,7 @@ import Todo from './components/Todo';
 
 function App() {
   return (
-    <div className='p-10 h-screen bg-red-300'>
+    <div className='p-10 h-screen bg-gradient-to-b from-indigo-700 to-cyan-500'>
       <div className='text-center'>
         <h1 className='text-4xl font-main'>TO DO LIST</h1>
       </div>
