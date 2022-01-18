@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { addTodos } from '../redux/reducer';
+import { createTodoFunc, fetchTasks } from '../todoSlice';
+import { useForm } from 'react-hook-form';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,12 +21,22 @@ const mapDispatchToProps = (dispatch) => {
 
 const Todo = (props) => {
 
+  const dispatch = useDispatch();
+
   const [todo, setTodo] = useState('');
 
   const handleChange = (e) => {
     setTodo(e.target.value)
   };
 
+  const {reset} = useForm();
+
+  const handleCreate = async() => {
+    await createTodoFunc(todo);
+    reset();
+    dispatch(fetchTasks());
+  }
+  
   const add = () => {
     if(todo === ''){
       alert('There is no input');
@@ -34,8 +46,9 @@ const Todo = (props) => {
         item: todo,
         completed: false,
       });
-      setTodo('');
     }
+    handleCreate()
+    setTodo('');
   };
 
   return (

@@ -2,10 +2,14 @@ import React, { useRef } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteTodoFunc, fetchTasks } from '../todoSlice';
+import { useDispatch } from 'react-redux';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const TodoItem = (props) => {
+
+  const dispatch = useDispatch()
 
   const {item, removeTodo, completeTodo, updateTodo} = props;
 
@@ -24,6 +28,11 @@ const TodoItem = (props) => {
     }
   };
 
+  const handleDelete = async() => {
+    await deleteTodoFunc(item.id);
+    dispatch(fetchTasks());
+  }
+
   return (
     <div className='w-1/5 h-1/3'>
       <div key={item.id} className='grid grid-rows-3 p-3 rounded-md backdrop-blur-sm bg-white/10'>
@@ -36,7 +45,7 @@ const TodoItem = (props) => {
           <div className='h-full w-10 flex justify-center items-center transition-all duration-500 ease-in-out hover:bg-gray-300' onClick={() => changeFocus()}>
             <EditIcon/>
           </div>
-          <div className='h-full w-10 flex justify-center items-center transition-all duration-500 ease-in-out hover:bg-gray-300' onClick={() => removeTodo(item.id)}>
+          <div className='h-full w-10 flex justify-center items-center transition-all duration-500 ease-in-out hover:bg-gray-300' onClick={() => {removeTodo(item.id); handleDelete();}}>
             <DeleteIcon/>
           </div>
         </div>
