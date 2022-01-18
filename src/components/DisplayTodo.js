@@ -24,20 +24,22 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const DisplayTodo = (props) => {
+
   return (
     <div className='w-full'>
       <ul>
+      
         <li className='flex flex-wrap justify-center gap-10'>
-          {props.todos.length > 0 ? props.todos.map((todo) => {
-            return(
-              <TodoItem key={todo.id}
-              item={todo}
-              removeTodo={props.removeTodo}
-              completeTodo={props.completeTodo}
-              updateTodo={props.updateTodo}
-              />
-            )
-          }) : null }
+        {props.todos.length > 0 ? props.todos.map((todo) => {
+          return(
+            <TodoItem key={todo.id}
+            item={todo}
+            removeTodo={props.removeTodo}
+            completeTodo={props.completeTodo}
+            updateTodo={props.updateTodo}
+            />
+          )
+        }) : null }
         </li>
       </ul>
     </div>

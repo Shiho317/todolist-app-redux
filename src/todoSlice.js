@@ -33,5 +33,3 @@ export async function deleteTodoFunc(id){
     console.error('error');
   }
 };
-
-
